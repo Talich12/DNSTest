@@ -61,11 +61,6 @@ def distribute_products():
                         WHERE "Фирма" = %s AND "Товар" = %s
                     """, (quantity_to_send, branch_id, product_id))
                     
-                    cursor.execute("""
-                        UPDATE needs 
-                        SET "Needs" = "Needs" - %s 
-                        WHERE "Branch_ID" = %s AND "Product_ID" = %s
-                    """, (quantity_to_send, branch_id, product_id))
 
                     log_distribution(cursor, product_id, branch_id, quantity_to_send)
                     remaining_quantity -= quantity_to_send
